@@ -11,7 +11,7 @@ type LikedProps = {
 export default function Liked({ avatar, username, likes }: LikedProps) {
     return (
         <Link href={`/${username}`}>
-            <div className="bg-light-blue p-2 my-2 h-15 flex">
+            <div className="bg-light-blue p-2 my-2 h-15 flex rounded-none md:rounded">
                 <Image src={avatar} alt="User avatar" width={48} height={48} />
 
                 <h1 className="mx-5 flex-1 text-green-500">{username}</h1>

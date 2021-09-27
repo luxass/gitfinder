@@ -14,6 +14,9 @@ module.exports = {
             fontFamily: {
                 roboto: ["Roboto", "sans-serif"],
             },
+            height: {
+                "430": "430px"
+            }
         },
     },
     variants: {

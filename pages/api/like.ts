@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connect } from "../../lib/connect";
-
+import axios from "axios";
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -10,6 +10,11 @@ export default async function handler(
             const { id } = req.body;
             // Should probably do something if the id in body is not there.
             const { Like } = await connect();
+            // We fetch the users username from id here
+            /*         const apiRes = await axios.get(
+                `https://api.github.com/user/${id}`
+            ); */
+
             const like = await Like.findOneAndUpdate(
                 { id: id },
                 {

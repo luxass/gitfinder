@@ -20,7 +20,7 @@ export default function GitUser({
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     try {
         const { user } = ctx.query;
-        const res = await axios.get(`${process.env.API_URL}/api/user/${user}`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user/${user}`);
 
         return {
             props: {

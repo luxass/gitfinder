@@ -3,6 +3,12 @@ import mongoose, { Model } from "mongoose";
 
 const { MONGODB_URI } = process.env;
 
+function wait(time: number) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, time);
+    });
+}
+
 export const connect = async () => {
     const conn = await mongoose
         .connect(MONGODB_URI as string)
@@ -14,13 +20,13 @@ export const connect = async () => {
         username: String,
     });
 
-    LikeSchema.pre("save", async function (next) {
+    LikeSchema.pre("findOneAndUpdate", async function () {
         const apiRes = await axios.get(
-            `https://api.github.com/user/${this.id}`
+            `${process.env.NEXT_PUBLIC_API_URL}/api/id/${this.getQuery().id}`
         );
-        this.username = "apiRes.data.login";
-        next();
+        this.set("username", apiRes.data.username);
     });
+
     const Like = mongoose.models.likes || mongoose.model("likes", LikeSchema);
     return { conn, Like };
 };

@@ -6,7 +6,7 @@ export default function Search() {
     const [error, setError] = useState("");
     const searchRef = useRef<HTMLInputElement>(null);
     return (
-        <div className="mb-10 bg-light-blue p-2">
+        <div className="mb-10 bg-light-blue p-2 rounded-none md:rounded">
             <div className="flex justify-between">
                 <input
                     className="w-full rounded bg-light-blue p-2 text-white"
@@ -24,13 +24,9 @@ export default function Search() {
                         }
                         try {
                             const userRes = await axios.get(
-                                `https://api.github.com/users/${searchRef.current?.value}`,
-                                {
-                                    headers: {
-                                        Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
-                                    },
-                                }
+                                `${process.env.NEXT_PUBLIC_API_URL}/api/user/${searchRef.current?.value}`
                             );
+
                             if (!userRes.data) {
                                 throw new Error("User not found");
                             }

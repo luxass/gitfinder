@@ -9,12 +9,12 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Layout>
-            <div className="w-full">
+            <div className="max-w-lg w-full md:w-2/3">
                 <h1 className="font-roboto text-3xl mb-5 ml-2 text-left text-white">
                     gitfinder
                 </h1>
                 <Search />
-                <div>
+                <div className="h-430">
                     {most_liked &&
                         most_liked.map(
                             (
@@ -41,7 +41,7 @@ export default function Home({
     );
 }
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    const res = await axios.get(`${process.env.API_URL}/api/likes`);
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/likes`);
     const most_liked = res.data.most_liked.sort(
         (
             a: {

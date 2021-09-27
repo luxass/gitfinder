@@ -12,6 +12,7 @@ export default async function handler(
             (like) => ({
                 id: like.id,
                 likes: like.likes,
+                username: like.username,
             })
         ),
     });
