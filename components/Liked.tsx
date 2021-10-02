@@ -17,7 +17,7 @@ export default function Liked({ avatar, username, likes }: LikedProps) {
                 <h1 className="mx-5 flex-1 text-green-500">{username}</h1>
                 <div className="bg-dark-blue h-8 my-auto w-10 rounded flex justify-around items-center text-green-500">
                     {likes}
-                    <ThumbsUp />
+                    <ThumbsUp width={16} height={16} />
                 </div>
             </div>
         </Link>

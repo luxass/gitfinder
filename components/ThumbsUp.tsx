@@ -1,14 +1,19 @@
-export default function ThumbsUp() {
+export default function ThumbsUp({
+    width,
+    height,
+}: {
+    width: number;
+    height: number;
+}) {
     return (
         <svg
             aria-hidden="true"
             focusable="false"
-            width="16"
-            height="16"
+            width={width}
+            height={height}
             role="img"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
-            className="text-green-500"
         >
             <path
                 fill="currentColor"

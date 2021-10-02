@@ -55,7 +55,6 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         ) => b.likes - a.likes
     );
 
-            console.log(most_liked)
     return {
         props: {
             most_liked,

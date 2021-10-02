@@ -1,5 +1,5 @@
 import Avatar from "./Avatar";
-import ThumbsUp from "./ThumbsUp";
+import ReactTooltip from "react-tooltip";
 import Mail from "./Mail";
 import Location from "./Location";
 import Twitter from "./Twitter";
@@ -24,7 +24,12 @@ type UserProps = {
 };
 
 export default function User({ user }: UserProps) {
-    const company: string = user.company || "Not Available";
+    let company: string | string[] = user.company || "Not Available";
+
+    if (company.includes("@")) {
+        company = company.split(" ");
+    }
+
     return (
         <div className="flex bg-light-blue p-12 flex-col rounded-none md:rounded">
             <div className="mb-5 flex">
@@ -110,10 +115,28 @@ export default function User({ user }: UserProps) {
                 </div>
                 <div>
                     <Building />
-                    <p className="inline-block ml-3">
-                        {company === "Not Available"
-                            ? "Not Available"
-                            : `@${company}`}
+                    <p className="inline-block ml-3" data-tip="React-tooltip">
+                        {company !== "Not Available" && company.length > 1
+                            ? `${company[0]}...`
+                            : company}
+                        {company !== "Not Available" && company.length > 1 && (
+                            <ReactTooltip
+                                place="right"
+                                type="dark"
+                                effect="solid"
+                            >
+                                <h1 className="text-lg pb-1">Companies</h1>
+                                <ul>
+                                    {company &&
+                                        Array.isArray(company) &&
+                                        company.map(
+                                            (company: string, index) => (
+                                                <li key={index}>{company}</li>
+                                            )
+                                        )}
+                                </ul>
+                            </ReactTooltip>
+                        )}
                     </p>
                 </div>
             </div>
